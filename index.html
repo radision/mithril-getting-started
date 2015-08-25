@@ -1,0 +1,906 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Mithril.js 入门</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/mithril.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+				<section data-background="#ffffcc">
+					<h1>Mithril.js入门</h1>
+					<h3>构建单页面应用的小钢炮</h3>
+					<p>
+          <small>Created by <a href="http://seqs.github.io">Seqs</a></small>
+					</p>
+				</section>
+
+
+
+
+
+<!-- from slides -->
+<section class="stack">
+  <section data-background="#ffffcc">
+    <h1>又一个框架？</h1>
+  </section>
+
+
+  <section>
+    <h2>有什么不同？</h2>
+  </section>
+
+  <section>
+    <h2>文件大小</h2>
+    <table>
+      <thead>
+        <tr><th>框架</th><th>版本</th><th>大小</th></tr>
+      </thead>
+
+      <tbody>
+        <tr><td>Reactive.js</td><td>v0.7.2</td><td>162KB</td></tr>
+        <tr><td>AngularJS</td><td>v1.3.15</td><td>123KB</td></tr>
+        <tr><td>React</td><td>v0.13.2</td><td>119KB</td></tr>
+        <tr><td>Vue.js</td><td>v0.11.8</td><td>59KB</td></tr>
+        <tr><td>Mithril.js</td><td>v0.2.0</td><td>19KB</td></tr>
+        <tr><td>Riot.js</td><td>v2.0.7</td><td>9KB</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>为什么文件大小很重要</h2>
+    <ul>
+      <li class="fragment" data-fragment-index="0">下载快（对移动端友好）</li>
+      <li class="fragment" data-fragment-index="1">解析编译快（同样对移动端友好）</li>
+      <li class="fragment" data-fragment-index="2">代码少、理解简单</li>
+      <li class="fragment" data-fragment-index="3">代码少、问题少</li>
+      <li class="fragment" data-fragment-index="4">更多的空间来写自己的代码 :)</li>
+    </ul>
+  </section>
+
+
+
+  <section>
+    <h2>API 接口</h2>
+    <table>
+      <thead>
+        <tr><th>框架</th><th>数量</th></tr>
+      </thead>
+
+      <tbody>
+        <tr><td>AngularJS</td><td>200+</td></tr>
+        <tr><td>Ember.js</td><td>100+</td></tr>
+        <tr><td>jQuery</td><td>200+</td></tr>
+        <tr><td>React.js</td><td>~50</td></tr>
+        <tr><td>Mithril.js</td><td>20</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+
+
+  <section>
+    <h2>为什么 API 接口很重要？</h2>
+    <ul>
+      <li class="fragment" data-fragment-index="0">学习少</li>
+      <li class="fragment" data-fragment-index="1">思考少</li>
+      <li class="fragment" data-fragment-index="2">记忆少</li>
+      <li class="fragment" data-fragment-index="3">集成更自由</li>
+      <li class="fragment" data-fragment-index="4">更少技术壁垒</li>
+    </ul>
+  </section>
+
+
+  <section>
+    <h2>性能</h2>
+
+
+    <table>
+      <thead>
+        <tr><th>框架</th><th>时间</th></tr>
+      </thead>
+
+      <tbody>
+        <tr><td>Mithril.js</td><td>73ms</td></tr>
+        <tr><td>Vue.js</td><td>117ms</td></tr>
+        <tr><td>AngularJS</td><td>265ms</td></tr>
+        <tr><td>Backbone</td><td>266ms</td></tr>
+        <tr><td>Reactive.js</td><td>300ms</td></tr>
+        <tr><td>React</td><td>448ms</td></tr>
+        <tr><td>Ember</td><td>734ms</td></tr>
+      </tbody>
+    </table>
+
+    <p><small>http://matt-esch.github.io/mercury-perf/</small></p>
+  </section>
+
+
+  <section>
+    <h2>为什么性能很重要？</h2>
+    <ul>
+      <li class="fragment" data-fragment-index="0">种种原因</li>
+      <li class="fragment" data-fragment-index="1">移动端友好</li>
+      <li class="fragment" data-fragment-index="2">UX</li>
+    </ul>
+  </section>
+
+
+  <section>
+    <h2>拥抱函数式编程</h2>
+    <ul>
+      <li class="fragment" data-fragment-index="0">容易测试</li>
+      <li class="fragment" data-fragment-index="1">容易扩展</li>
+      <li class="fragment" data-fragment-index="2">无副作用，Bug少</li>
+    </ul>
+  </section>
+
+
+  <section>
+    <h2>与React对比</h2>
+    <ul>
+      <li class="fragment" data-fragment-index="0">@pelonpelon: When I learned React, I learned abstractions that solved problems. When I learn Mithril, I learn more about javascript.</li>
+      <li class="fragment" data-fragment-index="1">@pelonpelon: Mithril will ever have an ecosystem like React. Javascript is its ecosystem.</li>
+    </ul>
+  </section>
+
+
+</section>
+
+
+
+
+
+<section class="stack">
+
+  <section data-background="#ffffcc">
+    <h1>特性</h1>
+  </section>
+
+  <section>
+    <h2>与 React 类似的虚拟DOM</h2>
+  </section>
+
+  <section>
+    <h2>小巧的路由层</h2>
+  </section>
+
+  <section>
+    <h2>模块化</h2>
+  </section>
+
+  <section>
+    <h2>Ajax 助手方法</h2>
+  </section>
+
+  <section>
+    <h2>组件内聚，易于组合</h2>
+  </section>
+
+  <section>
+    <h2>原生组件和自定义组件融合渲染</h2>
+  </section>
+
+  <section>
+    <h2>属性驱动全局更新，不用关注细节更新</h2>
+  </section>
+
+  <section>
+    <h2>- 仅此而已 -</h2>
+  </section>
+
+
+  <section>
+    <h2>没有万能类</h2>
+  </section>
+
+
+  <section>
+    <h2>没有继承树</h2>
+  </section>
+
+
+  <section>
+    <h2>没有模板语言</h2>
+  </section>
+
+
+  <section>
+    <h2>没有模块加载器</h2>
+  </section>
+
+  <section>
+    <h2>没有你不需要的杂七杂八的东西</h2>
+  </section>
+
+</section>
+
+
+
+
+<section class="stack">
+
+  <section data-background="#ffffcc">
+    <h1>什么时候不该使用？</h1>
+  </section>
+
+  <section>
+    <h2>初学者需要强结构化的框架</h2>
+  </section>
+
+  <section>
+    <h2>有很多第三方代码需要集成</h2>
+  </section>
+
+</section>
+
+
+
+<!-- /from slides -->
+
+
+<section class="stack">
+
+  <section data-background="#ffffcc">
+    <h1>核心 API</h1>
+  </section>
+
+  <section>
+    <h2>m</h2>
+    <p>构建虚拟DOM的便捷方法</p>
+    <pre><code data-trim contenteditable>
+m("br") =&gt; &lt;br&gt;
+
+m("div", "Hello") =&gt; &lt;div&gt;Hello&lt;/div&gt;
+
+m("div", {class: "container"}, "Hello")
+=&gt; &lt;div class="container"&gt;Hello&lt;/div&gt;
+
+m("div.container", "Hello")
+=&gt; &lt;div class="container"&gt;Hello&lt;/div&gt;
+    </code></pre>
+  </section>
+
+
+  <section>
+    <h2>m.component</h2>
+    <p>加载组件</p>
+    <pre><code data-trim contenteditable>
+var MyComponent = {
+  controller: function(args) {
+    return {greeting: args.message}
+  },
+  view: function(ctrl) {
+    return m("h2", ctrl.greeting)
+  }
+}
+
+var App = {
+  view: function() {
+    return m(".app", [
+      m("h1", "My App"),
+
+      // nested component
+      m.component(MyComponent, {message: "Hello"})
+    ])
+  }
+}
+
+m.mount(document.body, App)
+    </code></pre>
+  </section>
+
+
+  <section>
+    <h2>m.mount</h2>
+    <p>将组件渲染到DOM</p>
+    <pre><code data-trim contenteditable>
+var Hello = {
+  view: function(ctrl, props) {
+    return m("b", props.title);
+  }
+};
+
+m.mount(document.getElementById('root'), Hello);
+    </code></pre>
+  </section>
+
+
+  <section>
+    <h2>m.prop</h2>
+    <p>getter/setter API</p>
+    <pre><code data-trim contenteditable>
+var myCtrl = function() {
+  this.name = m.prop('admaster');
+
+  console.log(this.name); // -&gt; function(){..}
+
+  console.log(this.name()); // -&gt; "admaster"
+
+  // change value
+  this.name('openmaster');
+
+  console.log(this.name()); // -&gt; "openmaster"
+};
+    </code></pre>
+  </section>
+
+
+  <section>
+    <h2>m.withAttr</h2>
+    <p>配合onclick, oninput, onchange等事件使用</p>
+    <pre><code data-trim contenteditable>
+var user = {
+  model: function(name) {
+    this.name = m.prop(name);
+  },
+  controller: function() {
+    return {user: new user.model("John Doe")};
+  },
+  view: function(controller) {
+    m.render("body", [
+      m("input", {onchange: m.withAttr("value", controller.user.name), value: controller.user.name()})
+    ]);
+  }
+};
+    </code></pre>
+  </section>
+
+
+</section>
+
+
+
+
+
+
+
+<section class="stack">
+
+  <section data-background="#ffffcc">
+    <h1>路由 API</h1>
+  </section>
+
+
+  <section>
+    <h2>m.route(rootElement, defaultRoute, routes)</h2>
+    <p>定义路由</p>
+    <pre><code data-trim contenteditable>
+m.route(document.body, "/", {
+  "/": Home,
+  "/login": Login,
+  "/dashboard": Dashboard,
+});
+    </code></pre>
+  </section>
+
+
+  <section>
+    <h2>变长参数路由</h2>
+
+    <pre><code data-trim contenteditable>
+m.route(document.body, "/files/pictures/pic1.jpg", {
+  "/files/:file...": gallery
+});
+
+m.route.param("file") === "pictures/pic1.jpg"
+    </code></pre>
+
+    <pre><code data-trim contenteditable>
+m.route(document.body, "/blog/2014/01/20/articles", {
+  "/blog/:date.../articles": articleList
+});
+
+m.route.param("date") === "2014/01/20"
+    </code></pre>
+  </section>
+
+
+
+  <section>
+    <h2>m.route(path)</h2>
+    <p>重定向</p>
+    <pre><code data-trim contenteditable>
+m.route("/dashboard");
+    </code></pre>
+  </section>
+
+
+  <section>
+    <h2>m.route()</h2>
+    <p>返回当前激活路由</p>
+  </section>
+
+
+  <section>
+    <h2>m.route.param</h2>
+    <p>获取路由参数</p>
+    <pre><code data-trim contenteditable>
+// a sample component
+var Dashboard = {
+    controller: function() {
+        return {id: m.route.param("userID")}
+    },
+    view: function(controller) {
+        return m("div", controller.id);
+    }
+}
+
+// setup routes to start w/ the `#` symbol
+m.route.mode = "hash";
+
+// define a route
+m.route(document.body, "/dashboard/johndoe", {
+  "/dashboard/:userID": Dashboard
+});
+    </code></pre>
+  </section>
+
+
+
+  <section>
+    <h2>带参数路由</h2>
+    <pre><code data-trim contenteditable>
+m.route("/grid?sortby=date&amp;dir=desc")
+
+var sortBy = m.route.param("sortby") // "date"
+var dir = m.route.param("dir") // "desc"
+    </code></pre>
+  </section>
+
+
+</section>
+
+
+
+
+
+
+<section class="stack">
+
+  <section data-background="#ffffcc">
+    <h1>数据 API</h1>
+  </section>
+
+
+  <section>
+    <h2>m.request</h2>
+    <p>发起 ajax 请求</p>
+    <pre><code data-trim contenteditable>
+var users = m.request({method: "GET", url: "/user"});
+    </code></pre>
+
+    <pre><code data-trim contenteditable>
+var users = m.prop([]); // default value
+
+m.request({method: "GET", url: "/user"}).then(users)
+    </code></pre>
+
+
+  </section>
+
+
+  <section>
+    <h2>m.deferred</h2>
+    <p>异步流程处理</p>
+    <pre><code data-trim contenteditable>
+// standalone usage
+var greetAsync = function() {
+  var deferred = m.deferred();
+  setTimeout(function() {
+    deferred.resolve("hello");
+  }, 1000);
+  return deferred.promise;
+};
+
+greetAsync()
+  .then(function(value) {return value + " world"})
+  .then(function(value) {console.log(value)}); //logs "hello world" after 1 second
+    </code></pre>
+  </section>
+
+
+  <section>
+    <h2>m.sync</h2>
+    <p>异步队列处理</p>
+    <pre><code data-trim contenteditable>
+var greetAsync = function(delay) {
+  var deferred = m.deferred();
+  setTimeout(function() {
+    deferred.resolve("hello");
+  }, delay);
+  return deferred.promise;
+};
+
+m.sync([
+  greetAsync(1000),
+  greetAsync(1500)
+]).then(function(args) {
+  console.log(args); // ["hello", "hello"]
+});
+    </code></pre>
+  </section>
+
+
+
+</section>
+
+
+
+
+
+<section class="stack">
+
+  <section data-background="#ffffcc">
+    <h1>渲染 API</h1>
+  </section>
+
+  <section>
+    <h2>m.render</h2>
+    <p>将虚拟DOM渲染到指定HTML element上</p>
+    <pre><code data-trim contenteditable>
+var links = [
+  {title: "item 1", url: "/item1"}
+];
+
+m.render(document.body, [
+  m("ul.nav", [
+    m("li", links.map(function(link) {
+      return m("a", {href: link.url, config: m.route}, link.title)
+    })
+  ])
+]);
+    </code></pre>
+  </section>
+
+
+  <section>
+    <h2>m.redraw</h2>
+    <p>重绘</p>
+    <pre><code data-trim contenteditable>
+var doStuff = function() {
+    var self = this;
+    self.text = m.prop();
+
+    setTimeout(function() {
+        self.text("hello");
+
+        m.redraw();
+    }, 1000);
+};
+    </code></pre>
+  </section>
+
+
+  <section>
+    <h2>m.startComputation / m.endComputation</h2>
+    <p>绘制计算</p>
+    <pre><code data-trim contenteditable>
+var doStuff = function() {
+var self = this;
+self.text = m.prop();
+
+  m.startComputation(); //call `startComputation` before the asynchronous `setTimeout`
+
+  setTimeout(function() {
+    self.text("hello");
+
+    m.endComputation(); //call `endComputation` at the end of the callback
+  }, 1000);
+};
+    </code></pre>
+  </section>
+
+
+  <section>
+    <h2>m.trust</h2>
+    <p>Mithril默认HTML过滤的，该方法输出原生HTML</p>
+    <pre><code data-trim contenteditable>
+// assume this content comes from the server
+var content = "&lt;h1&gt;Error: invalid user&lt;/h1&gt;";
+
+m.render("body", [
+  m("div", m.trust(content))
+]);
+    </code></pre>
+
+    <p>输出</p>
+    <pre><code data-trim contenteditable>
+&lt;body&gt;
+  &lt;div&gt;
+    &lt;h1&gt;Error: invalid user&lt;/h1&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+    </code></pre>
+  </section>
+
+
+</section>
+
+
+
+
+
+
+
+
+<section class="stack">
+
+  <section data-background="#ffffcc">
+    <h1>视图选择</h1>
+  </section>
+
+
+  <section>
+    <h2>Vanilla Javascript</h2>
+    <pre><code data-trim contenteditable>
+m("ul.things", [
+  m("li", "iPhone"),
+  m("li", "Macbook"),
+])
+    </code></pre>
+  </section>
+
+
+  <section>
+    <h2>Coffescript</h2>
+    <pre><code data-trim contenteditable>
+m "ul.things",
+  m "li", "iPhone"
+  m "li", "Macbook"
+    </code></pre>
+  </section>
+
+
+  <section>
+    <h2>React's JSX (via MSX)</h2>
+    <pre><code data-trim contenteditable>
+&lt;ul class="things"&gt;
+  &lt;li&gt;iPhone&lt;/li&gt;
+  &lt;li&gt;Macbook&lt;/li&gt;
+&lt;/ul&gt;
+    </code></pre>
+  </section>
+
+
+</section>
+
+
+
+
+
+<section class="stack">
+
+  <section data-background="#ffffcc">
+    <h1>JSX</h1>
+
+    <p>类似 xml 的语法，用来描述组件树</p>
+    <pre><code data-trim contenteditable>
+&lt;div class="x"&gt;
+  &lt;a href="#"&gt;#&lt;/a&gt;
+  &lt;Hello&gt;1&lt;/Hello&gt;
+&lt;/div&gt;
+    </code></pre>
+
+    <p>编译为</p>
+    <pre><code data-trim contenteditable>
+{tag: "div", attrs: {class:"x"}, children: [
+  {tag: "a", attrs: {href:"#"}, children: ["#"]},
+  m.component(Hello, {}, ["1"])
+]}
+    </code></pre>
+
+  </section>
+
+
+  <section>
+    <h2>JSX 嵌入变量</h2>
+    <p>可以通过 {变量名} 来将变量的值作为属性值</p>
+    <pre><code data-trim contenteditable>
+var x = 'http://www.alipay.com';
+var y = &lt;a href={x}&gt;Alipay&lt;/a&gt;;
+    </code></pre>
+  </section>
+
+
+  <section>
+    <h2>PROPS</h2>
+    <p>通过 props 我们可以获取传递给该组件的属性值</p>
+    <pre><code data-trim contenteditable>
+
+var Hello ={
+  view: function(ctrl, props){
+    return &lt;b&gt;{props.title}&lt;/b&gt;
+  }
+};
+    </code></pre>
+  </section>
+
+
+  <section>
+    <h2>事件</h2>
+    <p>可以通过设置原生 dom 组件的 onEventType 属性来监听 dom 事件，例如 onclick, onmousedown，在加强组件内聚性的同时，避免了传统 html 的全局变量污染</p>
+    <pre><code data-trim contenteditable>
+
+var LikeButton = {
+  view: function(ctrl) {
+    var text = ctrl.state.liked() ? 'like' : 'haven\'t liked';
+    return (
+      &lt;p&gt;
+        You {text} this.
+        &lt;a href="javascript:;"
+          onclick={ctrl.handleClick}&gt;Click&lt;/a&gt; to toggle.
+      &lt;/p&gt;
+    );
+  }
+};
+    </code></pre>
+  </section>
+
+
+  <section>
+    <h2>config</h2>
+    <p>整合第三方基于DOM的类库，例如jquery.datepicker</p>
+    <pre><code data-trim contenteditable>
+
+var MyView = {
+  view: function(ctrl) {
+    return (
+      &lt;div&gt;
+        &lt;input type="text"
+          config={function(element, init, context) {
+            if (init) { return false; }
+            $(element).datepicker();
+          }}/&gt;
+      &lt;/div&gt;
+    );
+  }
+};
+    </code></pre>
+  </section>
+
+
+  <section>
+    <h2>组件组合</h2>
+    <p>我们可以像使用原生 DOM 组件一样使用自定义的组件</p>
+    <pre><code data-trim contenteditable>
+var A = {
+  view: function(){
+    return &lt;a href=‘#'&gt;a&lt;/a&gt;;
+  }
+};
+
+var B = {
+  view: function(){
+    return &lt;i&gt;&lt;A /&gt; !&lt;/i&gt;;
+  }
+};
+    </code></pre>
+  </section>
+
+
+  <section>
+    <h2>组件组合 CHILDREN</h2>
+    <p>自定义组件中我们可以通过 children 访问自定义组件的子节点</p>
+    <pre><code data-trim contenteditable>
+
+var NotesList = {
+  view: function(ctrl, props, children) {
+    return (
+      &lt;ol&gt;
+      {children.map(function(child) {
+        return (&lt;li&gt;{child}&lt;/li&gt;);
+      })}
+      &lt;/ol&gt;
+    );
+  }
+};
+
+var ComponentChildren = {
+  view: function(ctrl) {
+    return (
+      &lt;NotesList&gt;
+        &lt;span&gt;hello&lt;/span&gt;
+        &lt;span&gt;world&lt;/span&gt;
+      &lt;/NotesList&gt;
+    );
+  }
+};
+
+module.exports = ComponentChildren;
+
+    </code></pre>
+  </section>
+
+
+
+</section>
+
+
+
+
+<section data-background="#ffffcc">
+  <h1>谢谢！</h1>
+  <ul>
+    <li>https://github.com/seqs/mithril-getting-started/</li>
+    <li>https://github.com/seqs/mithril-msx-webpack/</li>
+  </ul>
+</section>
+
+
+
+
+
+
+
+
+
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
