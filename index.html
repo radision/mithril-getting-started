@@ -68,16 +68,16 @@
     <h2>文件大小</h2>
     <table>
       <thead>
-        <tr><th>框架</th><th>版本</th><th>大小</th></tr>
+        <tr><th>框架</th><th>版本</th><th>大小</th><th>图表</th></tr>
       </thead>
 
       <tbody>
-        <tr><td>Reactive.js</td><td>v0.7.2</td><td>162KB</td></tr>
-        <tr><td>AngularJS</td><td>v1.3.15</td><td>123KB</td></tr>
-        <tr><td>React</td><td>v0.13.2</td><td>119KB</td></tr>
-        <tr><td>Vue.js</td><td>v0.11.8</td><td>59KB</td></tr>
-        <tr><td>Mithril.js</td><td>v0.2.0</td><td>19KB</td></tr>
-        <tr><td>Riot.js</td><td>v2.0.7</td><td>9KB</td></tr>
+        <tr><td>Reactive.js</td><td>v0.7.2</td><td>162KB</td><td><span class="bar" style="width:162px;"></span></td></tr>
+        <tr><td>AngularJS</td><td>v1.3.15</td><td>123KB</td><td><span class="bar" style="width:123px;"></span></td></tr>
+        <tr><td>React</td><td>v0.13.2</td><td>119KB</td><td><span class="bar" style="width:119px;"></span></td></tr>
+        <tr><td>Vue.js</td><td>v0.11.8</td><td>59KB</td><td><span class="bar" style="width:59px;"></span></td></tr>
+        <tr><td>Mithril.js</td><td>v0.2.0</td><td>19KB</td><td><span class="bar" style="width:19px;"></span></td></tr>
+        <tr><td>Riot.js</td><td>v2.0.7</td><td>9KB</td><td><span class="bar" style="width:9px;"></span></td></tr>
       </tbody>
     </table>
   </section>
@@ -99,15 +99,15 @@
     <h2>API 接口</h2>
     <table>
       <thead>
-        <tr><th>框架</th><th>数量</th></tr>
+        <tr><th>框架</th><th>数量</th><th>图表</th></tr>
       </thead>
 
       <tbody>
-        <tr><td>AngularJS</td><td>200+</td></tr>
-        <tr><td>Ember.js</td><td>100+</td></tr>
-        <tr><td>jQuery</td><td>200+</td></tr>
-        <tr><td>React.js</td><td>~50</td></tr>
-        <tr><td>Mithril.js</td><td>20</td></tr>
+        <tr><td>AngularJS</td><td>200+</td><td><span class="bar" style="width:200px;"></span></td></tr>
+        <tr><td>Ember.js</td><td>100+</td><td><span class="bar" style="width:100px;"></span></td></tr>
+        <tr><td>jQuery</td><td>200+</td><td><span class="bar" style="width:200px;"></span></td></tr>
+        <tr><td>React.js</td><td>~50</td><td><span class="bar" style="width:50px;"></span></td></tr>
+        <tr><td>Mithril.js</td><td>20</td><td><span class="bar" style="width:20px;"></span></td></tr>
       </tbody>
     </table>
   </section>
@@ -132,17 +132,17 @@
 
     <table>
       <thead>
-        <tr><th>框架</th><th>时间</th></tr>
+        <tr><th>框架</th><th>时间</th><th>图表</th></tr>
       </thead>
 
       <tbody>
-        <tr><td>Mithril.js</td><td>73ms</td></tr>
-        <tr><td>Vue.js</td><td>117ms</td></tr>
-        <tr><td>AngularJS</td><td>265ms</td></tr>
-        <tr><td>Backbone</td><td>266ms</td></tr>
-        <tr><td>Reactive.js</td><td>300ms</td></tr>
-        <tr><td>React</td><td>448ms</td></tr>
-        <tr><td>Ember</td><td>734ms</td></tr>
+        <tr><td>Mithril.js</td><td>73ms</td><td><span class="bar" style="width:7px;"></span></td></tr>
+        <tr><td>Vue.js</td><td>117ms</td><td><span class="bar" style="width:11px;"></span></td></tr>
+        <tr><td>AngularJS</td><td>265ms</td><td><span class="bar" style="width:26px;"></span></td></tr>
+        <tr><td>Backbone</td><td>266ms</td><td><span class="bar" style="width:26px;"></span></td></tr>
+        <tr><td>Reactive.js</td><td>300ms</td><td><span class="bar" style="width:30px;"></span></td></tr>
+        <tr><td>React</td><td>448ms</td><td><span class="bar" style="width:44px;"></span></td></tr>
+        <tr><td>Ember</td><td>734ms</td><td><span class="bar" style="width:73px;"></span></td></tr>
       </tbody>
     </table>
 
@@ -628,7 +628,7 @@ self.text = m.prop();
 
   <section>
     <h2>m.trust</h2>
-    <p>Mithril默认HTML过滤的，该方法输出原生HTML</p>
+    <p>Mithril 默认 HTML 安全过滤的，该方法输出原生 HTML</p>
     <pre><code data-trim contenteditable>
 // assume this content comes from the server
 var content = "&lt;h1&gt;Error: invalid user&lt;/h1&gt;";
@@ -731,7 +731,7 @@ m "ul.things",
     <h2>JSX 嵌入变量</h2>
     <p>可以通过 {变量名} 来将变量的值作为属性值</p>
     <pre><code data-trim contenteditable>
-var x = 'http://www.alipay.com';
+var x = "http://www.alipay.com";
 var y = &lt;a href={x}&gt;Alipay&lt;/a&gt;;
     </code></pre>
   </section>
@@ -742,8 +742,8 @@ var y = &lt;a href={x}&gt;Alipay&lt;/a&gt;;
     <p>通过 props 我们可以获取传递给该组件的属性值</p>
     <pre><code data-trim contenteditable>
 
-var Hello ={
-  view: function(ctrl, props){
+var Hello = {
+  view: function(ctrl, props) {
     return &lt;b&gt;{props.title}&lt;/b&gt;
   }
 };
@@ -799,14 +799,14 @@ var MyView = {
     <p>我们可以像使用原生 DOM 组件一样使用自定义的组件</p>
     <pre><code data-trim contenteditable>
 var A = {
-  view: function(){
-    return &lt;a href=‘#'&gt;a&lt;/a&gt;;
+  view: function() {
+    return &lt;a href="#"&gt;a&lt;/a&gt;;
   }
 };
 
 var B = {
-  view: function(){
-    return &lt;i&gt;&lt;A /&gt; !&lt;/i&gt;;
+  view: function() {
+    return &lt;i&gt;&lt;A /&gt;&lt;/i&gt;;
   }
 };
     </code></pre>
@@ -854,14 +854,14 @@ module.exports = ComponentChildren;
 
 <section data-background="#ffffcc">
   <h1>示例</h1>
-  <p>http://seqs.github.io/mithril-msx-webpack/public/#/</p>
+  <p><a href="http://seqs.github.io/mithril-msx-webpack/public/" target="_blank">http://seqs.github.io/mithril-msx-webpack/public/</a></p>
 </section>
 
 
 
 <section data-background="#ffffcc">
   <h1>谢谢！</h1>
-  <p>http://seqs.github.io/mithril-getting-started</p>
+  <p><a href="http://seqs.github.io/mithril-getting-started" target="_blank">http://seqs.github.io/mithril-getting-started</a></p>
 </section>
 
 

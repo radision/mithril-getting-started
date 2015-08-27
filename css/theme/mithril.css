@@ -146,6 +146,13 @@ body {
   background: #3F3F3F;
   color: #DCDCDC; }
 
+.reveal pre mark {
+  background: #FAFAA2; }
+
+.reveal pre mark.important {
+  background: #C00;
+  color: #FFF; }
+
 .reveal table {
   margin: auto;
   border-collapse: collapse;
@@ -157,7 +164,7 @@ body {
 .reveal table th, .reveal table td {
   text-align: left;
   padding: 0.2em 0.5em 0.2em 0.5em;
-  border-bottom: 1px solid; }
+  border-bottom: 1px solid #333; }
 
 .reveal table th[align="center"], .reveal table td[align="center"] {
   text-align: center; }
@@ -267,3 +274,10 @@ body {
  *********************************************/
 .reveal .slide-number {
   color: #2a76dd; }
+
+.reveal .bar {
+  background: red;
+  height: 4px;
+  float: left;
+  margin: 0.5em 1em 0 0; }
+
